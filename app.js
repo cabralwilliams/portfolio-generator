@@ -1,9 +1,9 @@
 const inquirer = require('inquirer')
 
-/*
+
 const fs = require('fs');
 const generatePage = require('./src/page-template');
-
+/*
 const pageHTML = generatePage(name, github);
 
 fs.writeFile('./index.html', pageHTML, err => {
@@ -12,6 +12,51 @@ fs.writeFile('./index.html', pageHTML, err => {
   console.log('Portfolio complete! Check out index.html to see the output!');
 });
 */
+
+const mockData = {
+    name: "Cabral Williams",
+    github: "cabralwilliams",
+    confirmAbout: true,
+    about: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus minima debitis ullam tempore nostrum quas totam qui fugiat nam asperiores et nulla veniam accusamus, dolor aspernatur voluptas provident voluptatibus placeat.",
+    projects: [
+        {
+            name: 'Run Buddy',
+            description:
+              'Duis consectetur nunc nunc. Morbi finibus non sapien nec pharetra. Fusce nec dignissim orci, ac interdum ipsum. Morbi mattis justo sed commodo pellentesque. Nulla eget fringilla nulla. Integer gravida magna mi, id efficitur metus tempus et. Nam fringilla elit dapibus pellentesque cursus.',
+            languages: ['HTML', 'CSS'],
+            link: 'https://github.com/cabralwilliams/run-buddy',
+            feature: true,
+            confirmAddProject: true
+          },
+          {
+            name: 'A Task Creator',
+            description:
+              'Duis consectetur nunc nunc. Morbi finibus non sapien nec pharetra. Fusce nec dignissim orci, ac interdum ipsum. Morbi mattis justo sed commodo pellentesque. Nulla eget fringilla nulla. Integer gravida magna mi, id efficitur metus tempus et. Nam fringilla elit dapibus pellentesque cursus.',
+            languages: ['JavaScript', 'HTML', 'CSS'],
+            link: 'https://github.com/cabralwilliams/a-task-creator',
+            feature: true,
+            confirmAddProject: true
+          },
+          {
+            name: 'Taskmaster Pro',
+            description:
+              'Duis consectetur nunc nunc. Morbi finibus non sapien nec pharetra. Fusce nec dignissim orci, ac interdum ipsum. Morbi mattis justo sed commodo pellentesque. Nulla eget fringilla nulla. Integer gravida magna mi, id efficitur metus tempus et. Nam fringilla elit dapibus pellentesque cursus.',
+            languages: ['JavaScript', 'jQuery', 'CSS', 'HTML', 'Bootstrap'],
+            link: 'https://github.com/cabralwilliams/taskmaster-pro-max',
+            feature: false,
+            confirmAddProject: true
+          },
+          {
+            name: 'Robot Gladiators',
+            description:
+              'Duis consectetur nunc nunc. Morbi finibus non sapien nec pharetra. Fusce nec dignissim orci, ac interdum ipsum. Morbi mattis justo sed commodo pellentesque.',
+            languages: ['JavaScript'],
+            link: 'https://github.com/cabralwilliams/robot-gladiators',
+            feature: false,
+            confirmAddProject: false
+          }
+    ]
+};
 
 const promptProject = portfolioData => {
     if(!portfolioData.projects) {
@@ -144,5 +189,12 @@ const promptUser = () => {
 promptUser()
 .then(promptProject)
 .then(portfolioData => {
-    console.log(portfolioData);
+    //const pageHTML = generatePage(portfolioData);
+    const pageHTML = generatePage(mockData);
+    //const { name, github, confirmAbout, projects } = portfolioData;
+
+    fs.writeFile('./index.html', pageHTML, err => {
+        if (err) throw new Error(err);
+    //   console.log('Page created! Check out index.html in this directory to see it!');
+    });
 });
